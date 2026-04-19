@@ -1,6 +1,6 @@
 namespace Task5.Services.Audio;
 
-internal class MelodyComposer
+public class MelodyComposer
 {
     public NoteEvent[] Compose(MusicParams musicParams, Random random)
     {

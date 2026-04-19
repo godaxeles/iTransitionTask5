@@ -1,6 +1,6 @@
 namespace Task5.Services.Audio;
 
-internal static class ChordProgressionProvider
+public static class ChordProgressionProvider
 {
     private static readonly int[][] MajorProgressions =
     [

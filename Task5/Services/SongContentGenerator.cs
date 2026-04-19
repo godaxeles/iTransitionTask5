@@ -6,9 +6,9 @@ namespace Task5.Services;
 public class SongContentGenerator(LocaleData localeData, Faker faker)
 {
     private const float SingleProbability = 0.2f;
-    
+
     private const float SoloArtistProbability = 0.5f;
-    
+
     private const int LyricLineCount = 6;
 
     public string GenerateTitle()

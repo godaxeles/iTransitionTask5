@@ -1,6 +1,6 @@
 namespace Task5.Services.Audio;
 
-internal class BassComposer
+public class BassComposer
 {
     public NoteEvent[] Compose(MusicParams musicParams)
     {

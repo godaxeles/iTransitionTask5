@@ -1,6 +1,6 @@
 namespace Task5.Services.Audio;
 
-internal class AudioSynthesizer
+public class AudioSynthesizer
 {
     public float[] Synthesize(NoteEvent[] melodyNotes, NoteEvent[] bassNotes, float totalDuration)
     {

@@ -5,7 +5,7 @@ namespace Task5.Services;
 public class CoverGeneratorService
 {
     private const int Width = 400;
-    
+
     private const int Height = 400;
 
     public byte[] Generate(long seed, int songIndex, string title, string artist)
@@ -24,8 +24,7 @@ public class CoverGeneratorService
 
     private static Random CreateRandom(long seed, int songIndex)
     {
-        var combined = seed * 999_983L + songIndex * 7_919L;
-        return new Random(SeedHelper.ToInt32(combined));
+        return new Random(SeedHelper.ToInt32(SeedHelper.ComputeCoverSeed(seed, songIndex)));
     }
 
     private static CoverPalette CreatePalette(Random random)

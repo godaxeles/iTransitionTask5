@@ -2,14 +2,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Task5.Models;
 
-public class CoverParams
+public class AudioParams
 {
     public long Seed { get; set; }
 
     [Range(1, int.MaxValue)]
     public int Index { get; set; }
-
-    public string Title { get; set; } = string.Empty;
-
-    public string Artist { get; set; } = string.Empty;
 }

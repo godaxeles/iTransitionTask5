@@ -1,6 +1,6 @@
 namespace Task5.Services.Audio;
 
-internal class MusicParamsFactory
+public class MusicParamsFactory
 {
     private static readonly int[] RootNotes = [48, 50, 52, 53, 55, 57, 59, 60];
 

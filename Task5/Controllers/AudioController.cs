@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Task5.Models;
 using Task5.Services;
 
 namespace Task5.Controllers;
@@ -8,9 +9,9 @@ namespace Task5.Controllers;
 public class AudioController(AudioGeneratorService audioGeneratorService) : ControllerBase
 {
     [HttpGet]
-    public IActionResult Get([FromQuery] long seed, [FromQuery] int index)
+    public IActionResult Get([FromQuery] AudioParams parameters)
     {
-        var bytes = audioGeneratorService.Generate(seed, index);
+        var bytes = audioGeneratorService.Generate(parameters.Seed, parameters.Index);
         Response.Headers.CacheControl = "public, max-age=3600";
         return File(bytes, "audio/wav", enableRangeProcessing: true);
     }

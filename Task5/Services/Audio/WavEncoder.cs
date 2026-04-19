@@ -1,13 +1,13 @@
 namespace Task5.Services.Audio;
 
-internal class WavEncoder
+public class WavEncoder
 {
     private const short PcmFormat = 1;
-    
+
     private const short Channels = 1;
-    
+
     private const short BitsPerSample = 16;
-    
+
     private const int BytesPerSample = BitsPerSample / 8;
 
     public byte[] Encode(float[] samples)

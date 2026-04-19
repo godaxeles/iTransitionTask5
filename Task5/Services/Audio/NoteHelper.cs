@@ -1,6 +1,6 @@
 namespace Task5.Services.Audio;
 
-internal static class NoteHelper
+public static class NoteHelper
 {
     public static float ToFrequency(int midiNote)
         => 440f * MathF.Pow(2f, (midiNote - 69) / 12f);

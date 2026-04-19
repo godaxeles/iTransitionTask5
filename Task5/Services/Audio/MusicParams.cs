@@ -1,6 +1,6 @@
 namespace Task5.Services.Audio;
 
-internal record MusicParams(
+public record MusicParams(
     int RootNote,
     int[] ScaleIntervals,
     int Tempo,

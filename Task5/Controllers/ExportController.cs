@@ -11,13 +11,13 @@ public class ExportController(SongPackager songPackager, LocaleDataService local
     private const int MaxExportCount = 50;
 
     [HttpGet]
-    public IActionResult Get([FromQuery] GenerationParams parameters)
+    public async Task<IActionResult> Get([FromQuery] GenerationParams parameters, CancellationToken cancellationToken)
     {
         parameters.Locale = LocaleResolver.Resolve(parameters.Locale, Request.Headers.AcceptLanguage.ToString(), localeDataService);
         parameters.PageSize = Math.Clamp(parameters.PageSize, 1, MaxExportCount);
         parameters.Page = 1;
 
-        var bytes = songPackager.CreateZip(parameters);
+        var bytes = await songPackager.CreateZipAsync(parameters, cancellationToken);
         return File(bytes, "application/zip", BuildFileName(parameters));
     }
 

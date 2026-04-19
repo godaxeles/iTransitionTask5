@@ -8,35 +8,37 @@ public class SongPackager(
     AudioGeneratorService audioGeneratorService,
     Mp3Encoder mp3Encoder)
 {
-    public byte[] CreateZip(GenerationParams parameters)
+    private static readonly char[] ExtraInvalidFileChars = ['/', '\\'];
+
+    public async Task<byte[]> CreateZipAsync(GenerationParams parameters, CancellationToken cancellationToken = default)
     {
         var songs = dataGeneratorService.GeneratePage(parameters);
-        return BuildArchive(songs, parameters.Seed);
+        return await BuildArchiveAsync(songs, parameters.Seed, cancellationToken);
     }
 
-    private byte[] BuildArchive(List<SongRecord> songs, long seed)
+    private async Task<byte[]> BuildArchiveAsync(List<SongRecord> songs, long seed, CancellationToken cancellationToken)
     {
         using var zipStream = new MemoryStream();
-        WriteEntries(zipStream, songs, seed);
+        await WriteEntriesAsync(zipStream, songs, seed, cancellationToken);
         return zipStream.ToArray();
     }
 
-    private void WriteEntries(MemoryStream zipStream, List<SongRecord> songs, long seed)
+    private async Task WriteEntriesAsync(MemoryStream zipStream, List<SongRecord> songs, long seed, CancellationToken cancellationToken)
     {
         using var archive = new ZipArchive(zipStream, ZipArchiveMode.Create, leaveOpen: true);
         foreach (var song in songs)
-            WriteSongEntry(archive, song, seed);
+            await WriteSongEntryAsync(archive, song, seed, cancellationToken);
     }
 
-    private void WriteSongEntry(ZipArchive archive, SongRecord song, long seed)
+    private async Task WriteSongEntryAsync(ZipArchive archive, SongRecord song, long seed, CancellationToken cancellationToken)
     {
         var wavBytes = audioGeneratorService.Generate(seed, song.Index);
-        var mp3Bytes = mp3Encoder.Encode(wavBytes);
+        var mp3Bytes = await mp3Encoder.EncodeAsync(wavBytes, cancellationToken);
         var entryName = BuildEntryName(song);
 
         var entry = archive.CreateEntry(entryName, CompressionLevel.Fastest);
-        using var entryStream = entry.Open();
-        entryStream.Write(mp3Bytes, 0, mp3Bytes.Length);
+        await using var entryStream = entry.Open();
+        await entryStream.WriteAsync(mp3Bytes, cancellationToken);
     }
 
     private static string BuildEntryName(SongRecord song)
@@ -47,7 +49,7 @@ public class SongPackager(
 
     private static string Sanitize(string name)
     {
-        var invalid = Path.GetInvalidFileNameChars();
+        var invalid = Path.GetInvalidFileNameChars().Concat(ExtraInvalidFileChars).ToHashSet();
         var chars = name.Select(c => invalid.Contains(c) ? '_' : c).ToArray();
         return new string(chars);
     }

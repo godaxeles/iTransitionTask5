@@ -2,36 +2,30 @@ using Task5.Services.Audio;
 
 namespace Task5.Services;
 
-public class AudioGeneratorService
+public class AudioGeneratorService(
+    MusicParamsFactory musicParamsFactory,
+    MelodyComposer melodyComposer,
+    BassComposer bassComposer,
+    AudioSynthesizer audioSynthesizer,
+    WavEncoder wavEncoder)
 {
-    private readonly MusicParamsFactory _musicParamsFactory = new();
-    
-    private readonly MelodyComposer _melodyComposer = new();
-    
-    private readonly BassComposer _bassComposer = new();
-    
-    private readonly AudioSynthesizer _audioSynthesizer = new();
-    
-    private readonly WavEncoder _wavEncoder = new();
-
     public byte[] Generate(long seed, int songIndex)
     {
         var random = CreateRandom(seed, songIndex);
-        var musicParams = _musicParamsFactory.Create(random);
+        var musicParams = musicParamsFactory.Create(random);
 
-        var melodyNotes = _melodyComposer.Compose(musicParams, random);
-        var bassNotes = _bassComposer.Compose(musicParams);
+        var melodyNotes = melodyComposer.Compose(musicParams, random);
+        var bassNotes = bassComposer.Compose(musicParams);
 
         var totalDuration = ComputeTotalDuration(musicParams.Tempo);
-        var samples = _audioSynthesizer.Synthesize(melodyNotes, bassNotes, totalDuration);
+        var samples = audioSynthesizer.Synthesize(melodyNotes, bassNotes, totalDuration);
 
-        return _wavEncoder.Encode(samples);
+        return wavEncoder.Encode(samples);
     }
 
     private static Random CreateRandom(long seed, int songIndex)
     {
-        var combined = seed * 777_991L + songIndex * 131_071L;
-        return new Random(SeedHelper.ToInt32(combined));
+        return new Random(SeedHelper.ToInt32(SeedHelper.ComputeAudioSeed(seed, songIndex)));
     }
 
     private static float ComputeTotalDuration(int tempo)

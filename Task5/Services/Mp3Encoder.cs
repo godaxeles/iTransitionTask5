@@ -5,10 +5,10 @@ namespace Task5.Services;
 
 public class Mp3Encoder
 {
-    public byte[] Encode(byte[] wavBytes)
+    public async Task<byte[]> EncodeAsync(byte[] wavBytes, CancellationToken cancellationToken = default)
     {
         using var process = StartLameProcess();
-        return RunEncoding(process, wavBytes);
+        return await RunEncodingAsync(process, wavBytes, cancellationToken);
     }
 
     private static Process StartLameProcess()
@@ -37,20 +37,20 @@ public class Mp3Encoder
         }
     }
 
-    private static byte[] RunEncoding(Process process, byte[] wavBytes)
+    private static async Task<byte[]> RunEncodingAsync(Process process, byte[] wavBytes, CancellationToken cancellationToken)
     {
         using var output = new MemoryStream();
-        var readStdout = process.StandardOutput.BaseStream.CopyToAsync(output);
-        var readStderr = process.StandardError.ReadToEndAsync();
+        var readStdout = process.StandardOutput.BaseStream.CopyToAsync(output, cancellationToken);
+        var readStderr = process.StandardError.ReadToEndAsync(cancellationToken);
 
-        process.StandardInput.BaseStream.Write(wavBytes);
+        await process.StandardInput.BaseStream.WriteAsync(wavBytes, cancellationToken);
         process.StandardInput.Close();
 
-        readStdout.Wait();
-        process.WaitForExit();
+        await readStdout;
+        await process.WaitForExitAsync(cancellationToken);
 
         if (process.ExitCode != 0)
-            throw new InvalidOperationException($"lame exited with {process.ExitCode}: {readStderr.Result}");
+            throw new InvalidOperationException($"lame exited with {process.ExitCode}: {await readStderr}");
 
         return output.ToArray();
     }
