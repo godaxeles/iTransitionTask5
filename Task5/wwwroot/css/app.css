@@ -307,8 +307,9 @@ select.field {
 }
 .card:hover .card-play,
 .card.playing .card-play { opacity: 1; transform: translateY(0); }
-.card-play svg { width: 16px; height: 16px; margin-left: 1px; }
-.card.playing .card-play svg { margin-left: 0; }
+.card-play-inner { display: grid; place-items: center; width: 100%; height: 100%; }
+.card-play-inner svg { display: block; width: 16px; height: 16px; margin-left: 1px; }
+.card.playing .card-play-inner svg { margin-left: 0; }
 
 .c-title {
   font-size: 14px; font-weight: 600; color: var(--txt);
@@ -400,8 +401,7 @@ select.field {
 }
 .pl-play:hover { transform: scale(1.05); }
 .pl-play-inner { display: grid; place-items: center; width: 100%; height: 100%; }
-.pl-play svg { width: 14px; height: 14px; }
-.pl-play-inner svg { margin-left: 1px; }
+.pl-play-inner svg { display: block; width: 14px; height: 14px; margin-left: 1px; }
 
 .pl-progress { display: flex; align-items: center; gap: 10px; width: 100%; }
 .pl-time {

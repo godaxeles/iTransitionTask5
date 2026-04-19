@@ -9,7 +9,7 @@ RUN dotnet publish Task5/Task5.csproj -c Release -o /app/publish /p:UseAppHost=f
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
 RUN apt-get update \
- && apt-get install -y --no-install-recommends libfontconfig1 libmp3lame0 \
+ && apt-get install -y --no-install-recommends libfontconfig1 libmp3lame-dev \
  && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY --from=build /app/publish ./

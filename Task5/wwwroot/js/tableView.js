@@ -10,6 +10,9 @@ let currentSongs = [];
 let currentSeed = null;
 
 onPlayerEvent((event, data) => {
+  if (event === 'trackchange') {
+    autoExpandForTrack(data.song, data.seed);
+  }
   if (event === 'trackchange' || event === 'play' || event === 'pause' || event === 'ended') {
     refreshPlayingState();
   }
@@ -17,6 +20,17 @@ onPlayerEvent((event, data) => {
     syncActiveLyric(data.currentTime, data.duration);
   }
 });
+
+function autoExpandForTrack(song, seed) {
+  const row = document.querySelector(`.row[data-index="${song.index}"]`);
+  if (!row) return;
+  if (expandedIndex === song.index) return;
+  collapseCurrent();
+  expandedIndex = song.index;
+  row.classList.add('expanded');
+  row.insertAdjacentElement('afterend', createDetail(song, seed));
+  row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
 
 function render(songs, page, seed, goToPage) {
   currentSongs = songs;
