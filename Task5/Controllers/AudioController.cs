@@ -12,6 +12,6 @@ public class AudioController(AudioGeneratorService audioGeneratorService) : Cont
     {
         var bytes = audioGeneratorService.Generate(seed, index);
         Response.Headers.CacheControl = "public, max-age=3600";
-        return File(bytes, "audio/wav");
+        return File(bytes, "audio/wav", enableRangeProcessing: true);
     }
 }

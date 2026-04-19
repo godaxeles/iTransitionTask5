@@ -48,28 +48,44 @@ async function fetchSongs(page) {
     return response.json();
 }
 
-function onParamsChanged() {
+async function onParamsChanged() {
     state.tablePage = 1;
-    resetGallery();
-    resetTable();
-    if (state.view === 'table') loadTablePage();
-    else loadNextGalleryPage();
+    if (state.view === 'table') {
+        await loadTablePage({ fullReset: true });
+    } else {
+        resetGallery();
+        await loadNextGalleryPage();
+    }
 }
 
-async function loadTablePage() {
-    const songs = await fetchSongs(state.tablePage);
-    state.lastSongs = songs;
-    renderTable(songs, state.tablePage, state.seed, goToTablePage);
-    updateCountLine(songs.length);
+async function loadTablePage({ fullReset = false } = {}) {
+    const section = document.getElementById('table-section');
+    section.classList.add('is-loading');
+    try {
+        const songs = await fetchSongs(state.tablePage);
+        state.lastSongs = songs;
+        if (fullReset) resetTable();
+        renderTable(songs, state.tablePage, state.seed, goToTablePage);
+        updateCountLine(songs.length);
+    } finally {
+        requestAnimationFrame(() => section.classList.remove('is-loading'));
+    }
 }
 
 async function loadNextGalleryPage() {
     const page = galleryNextPage();
     if (page === null) return;
-    const songs = await fetchSongs(page);
-    galleryAppend(songs, state.seed);
-    const grid = document.getElementById('gallery-grid');
-    updateCountLine(grid.children.length);
+    const section = document.getElementById('gallery-section');
+    const isFirstPage = page === 1;
+    if (isFirstPage) section.classList.add('is-loading');
+    try {
+        const songs = await fetchSongs(page);
+        galleryAppend(songs, state.seed);
+        const grid = document.getElementById('gallery-grid');
+        updateCountLine(grid.children.length);
+    } finally {
+        if (isFirstPage) requestAnimationFrame(() => section.classList.remove('is-loading'));
+    }
 }
 
 function updateCountLine(count) {

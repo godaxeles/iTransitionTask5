@@ -1,4 +1,4 @@
-import { formatTime, escapeHtml, buildCoverUrl } from './utils.js';
+import { formatTime, buildCoverUrl } from './utils.js';
 
 const ICONS = {
   play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>',
@@ -13,6 +13,7 @@ const audio = () => document.getElementById('global-audio');
 let currentIndex = null;
 let currentSeed = null;
 let lastVolume = 1;
+let isSeeking = false;
 
 function notify(event, data) {
   listeners.forEach(fn => fn(event, data));
@@ -81,6 +82,39 @@ function updatePlayBtn() {
   inner.innerHTML = a.paused ? ICONS.play : ICONS.pause;
 }
 
+function wireDragBar(bar, onChange) {
+  let activePointerId = null;
+
+  const computePct = (clientX) => {
+    const rect = bar.getBoundingClientRect();
+    return Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+  };
+
+  const onMove = e => {
+    if (e.pointerId !== activePointerId) return;
+    onChange(computePct(e.clientX));
+  };
+
+  const onUp = e => {
+    if (e.pointerId !== activePointerId) return;
+    activePointerId = null;
+    bar.releasePointerCapture?.(e.pointerId);
+    bar.removeEventListener('pointermove', onMove);
+    bar.removeEventListener('pointerup', onUp);
+    bar.removeEventListener('pointercancel', onUp);
+  };
+
+  bar.addEventListener('pointerdown', e => {
+    if (e.button !== 0 && e.pointerType === 'mouse') return;
+    activePointerId = e.pointerId;
+    bar.setPointerCapture?.(e.pointerId);
+    bar.addEventListener('pointermove', onMove);
+    bar.addEventListener('pointerup', onUp);
+    bar.addEventListener('pointercancel', onUp);
+    onChange(computePct(e.clientX));
+  });
+}
+
 function initPlayer() {
   const a = audio();
   if (!a) return;
@@ -106,29 +140,31 @@ function initPlayer() {
     durationEl.textContent = formatTime(a.duration);
   });
   a.addEventListener('timeupdate', () => {
+    if (isSeeking) return;
     currentEl.textContent = formatTime(a.currentTime);
     if (a.duration) fill.style.width = (a.currentTime / a.duration) * 100 + '%';
     notify('timeupdate', { currentTime: a.currentTime, duration: a.duration });
   });
   a.addEventListener('play', () => { updatePlayBtn(); notify('play'); });
   a.addEventListener('pause', () => { updatePlayBtn(); notify('pause'); });
-  a.addEventListener('ended', () => {
-    updatePlayBtn();
-    notify('ended');
+  a.addEventListener('ended', () => { updatePlayBtn(); notify('ended'); });
+  a.addEventListener('seeking', () => { isSeeking = true; });
+  a.addEventListener('seeked', () => {
+    isSeeking = false;
+    currentEl.textContent = formatTime(a.currentTime);
+    if (a.duration) fill.style.width = (a.currentTime / a.duration) * 100 + '%';
   });
 
-  bar.addEventListener('click', e => {
-    if (!a.duration) return;
-    const rect = bar.getBoundingClientRect();
-    const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+  wireDragBar(bar, pct => {
+    if (!a.duration || !isFinite(a.duration)) return;
+    currentEl.textContent = formatTime(pct * a.duration);
+    fill.style.width = pct * 100 + '%';
     a.currentTime = pct * a.duration;
   });
 
-  volBar.addEventListener('click', e => {
-    const rect = volBar.getBoundingClientRect();
-    const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-    a.volume = pct;
+  wireDragBar(volBar, pct => {
     a.muted = pct === 0;
+    a.volume = pct;
     if (pct > 0) lastVolume = pct;
     volFill.style.width = pct * 100 + '%';
     updateVolIcon();

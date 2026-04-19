@@ -151,7 +151,8 @@ select.field {
 
 /* ─── View sections ─── */
 .view-wrap > .view-section { display: none; }
-.view-wrap > .view-section.active { display: block; }
+.view-wrap > .view-section.active { display: block; transition: opacity 0.18s ease; }
+.view-wrap > .view-section.is-loading { opacity: 0.35; pointer-events: none; }
 
 /* ─── Table ─── */
 .rows { border-top: 1px solid var(--line); }
@@ -408,7 +409,7 @@ select.field {
   font-variant-numeric: tabular-nums; min-width: 36px; text-align: center;
 }
 .pl-time-dim { color: var(--txt-3); }
-.pl-bar { flex: 1; height: 14px; display: flex; align-items: center; cursor: pointer; position: relative; }
+.pl-bar { flex: 1; height: 14px; display: flex; align-items: center; cursor: pointer; position: relative; touch-action: none; user-select: none; }
 .pl-bar-bg {
   width: 100%; height: 4px; background: var(--line);
   border-radius: 100px; position: relative; overflow: hidden;
@@ -429,7 +430,7 @@ select.field {
 .vol-btn:hover { color: var(--txt); }
 .vol-btn svg { width: 16px; height: 16px; }
 .vol-icon { display: grid; place-items: center; }
-.vol-bar { width: 100px; height: 14px; display: flex; align-items: center; cursor: pointer; position: relative; }
+.vol-bar { width: 100px; height: 14px; display: flex; align-items: center; cursor: pointer; position: relative; touch-action: none; user-select: none; }
 .vol-bar-bg {
   width: 100%; height: 4px; background: var(--line);
   border-radius: 100px; position: relative; overflow: hidden;
