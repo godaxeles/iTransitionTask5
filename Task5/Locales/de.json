@@ -1,0 +1,90 @@
+{
+  "displayName": "Deutsch (Deutschland)",
+  "titleAdjectives": [
+    "Dunkle", "Helle", "Verlorene", "Wilde", "Gebrochene", "Stille", "Elektrische",
+    "Gefrorene", "Brennende", "Goldene", "Mitternächtliche", "Kristallene", "Leere",
+    "Endlose", "Verblichene", "Aufsteigende", "Fallende", "Zersplitterte", "Samtene",
+    "Scharlachrote", "Ferne", "Rastlose", "Gestohlene", "Alte", "Bittere"
+  ],
+  "titleNouns": [
+    "Herz", "Straße", "Nacht", "Traum", "Feuer", "Regen", "Sturm", "Himmel",
+    "Seele", "Welle", "Stadt", "Schatten", "Fluss", "Wüste", "Berg", "Ozean",
+    "Kette", "Spiegel", "Flamme", "Geist", "Gezeiten", "Wunde", "Stimme",
+    "Brücke", "Krone", "Fluch", "Schwinge", "Stein", "Blut", "Echo"
+  ],
+  "genres": [
+    "Rock", "Pop", "Jazz", "Blues", "Hip-Hop", "Elektronik", "Klassik",
+    "Volksmusik", "Schlager", "Metal", "Alternative", "Punk", "Ambient",
+    "Techno", "House", "Indie", "Soul", "Funk", "Gospel", "Grunge",
+    "Post-Rock", "Neue Welle", "Krautrock", "Symphonic Metal", "Dark Wave"
+  ],
+  "bandPrefixes": [
+    "Die", "Schwarze", "Rote", "Blaue", "Dunkle", "Elektrische", "Eiserne",
+    "Stahl", "Gebrochene", "Neon", "Silberne", "Hohle", "Scharlachrote",
+    "Alte", "Blinde"
+  ],
+  "bandSuffixes": [
+    "Band", "Projekt", "Kollektiv", "Ensemble", "Crew", "Gesellschaft",
+    "Bruderschaft", "Allianz", "Union", "Maschine", "Theorie", "Komplex",
+    "Division", "Bewegung", "Gruppe"
+  ],
+  "albumWords": [
+    "Chroniken", "Echos", "Visionen", "Geschichten", "Träume", "Schatten",
+    "Reflexionen", "Dimensionen", "Reisen", "Erzählungen", "Hymnen",
+    "Fragmente", "Porträts", "Archive", "Legenden"
+  ],
+  "reviewSentences": [
+    "Eine atemberaubende Klangreise von Anfang bis Ende.",
+    "Dieser Track trifft einen jedes Mal anders.",
+    "Üppige Produktion und ein unvergesslicher Hook machen diesen Song zu einem Highlight.",
+    "Die Art von Lied, das lange nach dem Hören in einem nachhallt.",
+    "Emotional anrührend und wunderschön geschichtet.",
+    "Eine Meisterklasse in Zurückhaltung und roher Kraft.",
+    "Jede Note wirkt bewusst gesetzt und perfekt platziert.",
+    "Kühn, frisch und nicht zu überhören.",
+    "Einer jener seltenen Tracks, der sein Genre übersteigt.",
+    "Die Produktion hier ist absolut makellos.",
+    "Hypnotische Rhythmen gepaart mit einer mitreißenden Melodie.",
+    "Ein zutiefst persönliches Statement in einem unwiderstehlichen Klanggewand.",
+    "Sofort ikonisch — dieser Track gehört in jede Playlist.",
+    "Die Gesangsdarbietung allein ist jeden Moment wert.",
+    "Gleichermaßen eindringlich wie euphorisch.",
+    "Ein Lied, das etwas einfängt, was Worte allein nicht ausdrücken können.",
+    "Groovegeladen und absolut fesselnd.",
+    "Pure Emotion, destilliert in wenige Minuten purer Brillanz.",
+    "Der Track, der einen innehalten lässt, egal was man gerade tut.",
+    "Ehrgeizig, vielschichtig und zutiefst befriedigend."
+  ],
+  "lyricLines": [
+    "Allein durch den Regen der Mitternacht",
+    "Ein Flüstern aus längst vergangener Pracht",
+    "Die Lichter der Stadt verblassen im Blau",
+    "Jeder Schritt eine Erinnerung genau",
+    "Halt mich bis der Morgen wieder kommt",
+    "Wir waren jung und brannten wie ein Stern",
+    "Ein Echo eines Liedes ohne Namen",
+    "Tanzend zwischen Schatten der Zeit",
+    "Versprechen waren nie für die Ewigkeit",
+    "Ich hör dein Herz im Lärm der Welt",
+    "Verloren in der Stille deiner Hand",
+    "Sterne fallen über das stille Land",
+    "Nimm mich mit weit weg von hier",
+    "Nichts als der Wind gehört nur mir",
+    "Auf der Suche nach einem Zuhaus",
+    "Jeder Fluss führt mich zurück zu dir",
+    "Himmel gemalt in Rot und in Grau",
+    "Sag mir der Traum war immer wahr",
+    "Öffne die Wunden vom letzten Jahr",
+    "Halte fest die Splitter dieser Nacht",
+    "Brücken brennen außer Sicht",
+    "Wege winden sich durch das Licht",
+    "Stimmen längst vergessener Freund",
+    "Fallend wie Regen ins tiefe Meer",
+    "Alles was ich bin bist du mir wert",
+    "Donnern jagen unterm Mondenschein",
+    "Der Sommer endet viel zu schnell",
+    "Worte die ich nie gesagt",
+    "Trag mich über diesen neuen Tag",
+    "Wir sehn uns wieder am fernen Strand"
+  ]
+}

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Bogus" Version="35.6.5" />
+      <PackageReference Include="SkiaSharp" Version="2.88.9" />
+      <PackageReference Include="SkiaSharp.NativeAssets.Win32" Version="2.88.9" />
+      <PackageReference Include="NAudio.Lame" Version="2.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Update="Locales\**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+</Project>

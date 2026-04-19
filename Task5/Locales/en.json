@@ -1,0 +1,89 @@
+{
+  "displayName": "English (USA)",
+  "titleAdjectives": [
+    "Dark", "Bright", "Lost", "Wild", "Broken", "Silent", "Electric", "Frozen",
+    "Burning", "Golden", "Midnight", "Crystal", "Neon", "Hollow", "Savage",
+    "Endless", "Fading", "Rising", "Falling", "Shattered", "Velvet", "Crimson",
+    "Distant", "Restless", "Stolen", "Ancient", "Ruthless", "Wicked", "Pale", "Bitter"
+  ],
+  "titleNouns": [
+    "Heart", "Road", "Night", "Dream", "Fire", "Rain", "Storm", "Sky", "Soul",
+    "Wave", "City", "Shadow", "River", "Desert", "Mountain", "Ocean", "Chain",
+    "Mirror", "Flame", "Ghost", "Tide", "Wound", "Voice", "Bridge", "Crown",
+    "Curse", "Wing", "Stone", "Blood", "Echo"
+  ],
+  "genres": [
+    "Rock", "Pop", "Jazz", "Blues", "Hip-Hop", "Electronic", "Classical",
+    "Country", "R&B", "Indie", "Metal", "Folk", "Soul", "Funk", "Reggae",
+    "Punk", "Alternative", "Dance", "Gospel", "Ambient", "Grunge", "Synth-Pop",
+    "Post-Rock", "Neo-Soul", "Shoegaze"
+  ],
+  "bandPrefixes": [
+    "The", "Black", "Red", "Blue", "Dark", "Electric", "Iron", "Steel",
+    "Broken", "Neon", "Silver", "Hollow", "Crimson", "Ancient", "Blind"
+  ],
+  "bandSuffixes": [
+    "Band", "Project", "Collective", "Syndicate", "Ensemble", "Crew",
+    "Society", "Brotherhood", "Alliance", "Union", "Machine", "Theory",
+    "Complex", "Division", "Movement"
+  ],
+  "albumWords": [
+    "Chronicles", "Echoes", "Visions", "Tales", "Dreams", "Shadows",
+    "Reflections", "Dimensions", "Journeys", "Stories", "Anthems",
+    "Fragments", "Portraits", "Archives", "Legends"
+  ],
+  "reviewSentences": [
+    "A breathtaking sonic journey from start to finish.",
+    "This track hits different every time you listen.",
+    "Lush production and an unforgettable hook make this a standout.",
+    "The kind of song that stays with you long after it ends.",
+    "Emotionally resonant and beautifully layered.",
+    "A masterclass in restraint and raw power.",
+    "Every note feels intentional and perfectly placed.",
+    "Bold, fresh, and impossible to ignore.",
+    "One of those rare tracks that transcends its genre.",
+    "The production here is absolutely immaculate.",
+    "Hypnotic rhythms paired with a soaring melody.",
+    "A deeply personal statement wrapped in an irresistible sound.",
+    "Instantly iconic — this one belongs in every playlist.",
+    "The vocal performance alone is worth the price of admission.",
+    "Equal parts haunting and euphoric.",
+    "A song that captures something words alone cannot express.",
+    "Groove-laden and utterly captivating.",
+    "Pure emotion distilled into three minutes of brilliance.",
+    "The kind of track that makes you stop whatever you're doing.",
+    "Ambitious, layered, and deeply satisfying."
+  ],
+  "lyricLines": [
+    "Walking through the midnight rain alone",
+    "Whispers of a love I used to know",
+    "City lights are fading into blue",
+    "Every step a memory of you",
+    "Hold me till the morning comes again",
+    "We were young and burning like a flame",
+    "Echoes of a song without a name",
+    "Dancing in the shadows of the past",
+    "Promises that were not built to last",
+    "I can hear your heartbeat through the noise",
+    "Lost inside the silence of your voice",
+    "Stars are falling down across the bay",
+    "Take my hand and lead me far away",
+    "Nothing but the wind to call my own",
+    "Searching for a place to call a home",
+    "Every river leads me back to you",
+    "Painted skies in shades of red and blue",
+    "Tell me that the dream was always real",
+    "Open up the wounds I cannot heal",
+    "Holding on to fragments of the night",
+    "Burning all the bridges out of sight",
+    "Roads that twist and never seem to end",
+    "Voices of a long forgotten friend",
+    "Falling like the rain into the sea",
+    "Everything I am you helped me be",
+    "Chasing thunder underneath the moon",
+    "Summer ended way too soon",
+    "All the words I never got to say",
+    "Carry me beyond another day",
+    "We will meet again on distant shores"
+  ]
+}

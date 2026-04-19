@@ -1,0 +1,14 @@
+**/bin/
+**/obj/
+**/publish/
+**/published/
+**/.idea/
+**/.vs/
+**/.vscode/
+**/*.user
+**/*.log
+**/*.stackdump
+.git/
+.gitignore
+.claude/
+design_handoff_music_catalogue/
