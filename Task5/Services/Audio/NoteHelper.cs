@@ -7,8 +7,9 @@ public static class NoteHelper
 
     public static int DegreeToMidi(int degree, int rootNote, int[] scale, int octave)
     {
-        var normalizedDeg = ((degree % 7) + 7) % 7;
-        var octaveShift = degree / 7 + octave;
+        var length = scale.Length;
+        var normalizedDeg = ((degree % length) + length) % length;
+        var octaveShift = (degree >= 0 ? degree : degree - (length - 1)) / length + octave;
         return rootNote + scale[normalizedDeg] + octaveShift * 12;
     }
 }

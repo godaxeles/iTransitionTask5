@@ -12,6 +12,8 @@ public class SongRecord
 
     public string Genre { get; set; } = string.Empty;
 
+    public GenreCategory GenreCategory { get; set; }
+
     public int Likes { get; set; }
 
     public string Review { get; set; } = string.Empty;

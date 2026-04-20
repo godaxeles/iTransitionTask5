@@ -11,6 +11,8 @@ public class SongContentGenerator(LocaleData localeData, Faker faker)
 
     private const int LyricLineCount = 6;
 
+    private static readonly GenreCategory[] AllCategories = Enum.GetValues<GenreCategory>();
+
     public string GenerateTitle()
     {
         var adjective = faker.PickRandom(localeData.TitleAdjectives);
@@ -32,8 +34,15 @@ public class SongContentGenerator(LocaleData localeData, Faker faker)
             : GenerateAlbumTitle();
     }
 
-    public string GenerateGenre()
-        => faker.PickRandom(localeData.Genres);
+    public GenreCategory GenerateGenreCategory()
+        => faker.PickRandom(AllCategories);
+
+    public string LocalizeGenre(GenreCategory category)
+    {
+        var index = (int)category;
+        if (localeData.Genres.Length == 0) return category.ToString();
+        return index < localeData.Genres.Length ? localeData.Genres[index] : localeData.Genres[0];
+    }
 
     public string GenerateReview()
     {

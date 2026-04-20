@@ -13,10 +13,8 @@
     "Curse", "Wing", "Stone", "Blood", "Echo"
   ],
   "genres": [
-    "Rock", "Pop", "Jazz", "Blues", "Hip-Hop", "Electronic", "Classical",
-    "Country", "R&B", "Indie", "Metal", "Folk", "Soul", "Funk", "Reggae",
-    "Punk", "Alternative", "Dance", "Gospel", "Ambient", "Grunge", "Synth-Pop",
-    "Post-Rock", "Neo-Soul", "Shoegaze"
+    "Rock", "Metal", "Pop", "Jazz", "Blues", "Hip-Hop", "Electronic",
+    "Classical", "Country", "Folk", "Reggae", "Punk", "Ambient", "Indie"
   ],
   "bandPrefixes": [
     "The", "Black", "Red", "Blue", "Dark", "Electric", "Iron", "Steel",

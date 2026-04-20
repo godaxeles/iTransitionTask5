@@ -1,5 +1,6 @@
 using Task5.Services;
 using Task5.Services.Audio;
+using Task5.Services.Cover;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,12 +9,20 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<LocaleDataService>();
 builder.Services.AddSingleton<LikesCalculator>();
 builder.Services.AddSingleton<DataGeneratorService>();
+
+builder.Services.AddSingleton<ProceduralPainterRegistry>();
 builder.Services.AddSingleton<CoverGeneratorService>();
 
 builder.Services.AddSingleton<MusicParamsFactory>();
 builder.Services.AddSingleton<MelodyComposer>();
 builder.Services.AddSingleton<BassComposer>();
+builder.Services.AddSingleton<PadComposer>();
+builder.Services.AddSingleton<DrumComposer>();
 builder.Services.AddSingleton<AudioSynthesizer>();
+builder.Services.AddSingleton<MidiEventBuilder>();
+builder.Services.AddSingleton<MidiAudioRenderer>();
+builder.Services.AddSingleton<SoundFontProvider>();
+builder.Services.AddSingleton<GenreAudioProcessor>();
 builder.Services.AddSingleton<WavEncoder>();
 builder.Services.AddSingleton<AudioGeneratorService>();
 

@@ -11,7 +11,8 @@ public class AudioController(AudioGeneratorService audioGeneratorService) : Cont
     [HttpGet]
     public IActionResult Get([FromQuery] AudioParams parameters)
     {
-        var bytes = audioGeneratorService.Generate(parameters.Seed, parameters.Index);
+        var category = (GenreCategory)parameters.Genre;
+        var bytes = audioGeneratorService.Generate(parameters.Seed, parameters.Index, category);
         Response.Headers.CacheControl = "public, max-age=3600";
         return File(bytes, "audio/wav", enableRangeProcessing: true);
     }

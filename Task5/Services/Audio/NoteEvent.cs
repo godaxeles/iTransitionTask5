@@ -1,3 +1,3 @@
 namespace Task5.Services.Audio;
 
-public record NoteEvent(int MidiNote, float StartTime, float EndTime);
+public record NoteEvent(int MidiNote, float StartTime, float EndTime, float Velocity = 1f);

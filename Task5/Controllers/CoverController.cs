@@ -11,11 +11,13 @@ public class CoverController(CoverGeneratorService coverGeneratorService) : Cont
     [HttpGet]
     public IActionResult Get([FromQuery] CoverParams parameters)
     {
+        var category = (GenreCategory)parameters.Genre;
         var bytes = coverGeneratorService.Generate(
             parameters.Seed,
             parameters.Index,
             parameters.Title,
-            parameters.Artist);
+            parameters.Artist,
+            category);
 
         Response.Headers.CacheControl = "public, max-age=3600";
         return File(bytes, "image/png");

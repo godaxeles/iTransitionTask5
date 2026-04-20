@@ -34,13 +34,15 @@ public class DataGeneratorService(LocaleDataService localeDataService, LikesCalc
 
     private SongRecord BuildSong(GenerationParams parameters, SongContentGenerator generator, int songIndex)
     {
+        var category = generator.GenerateGenreCategory();
         return new SongRecord
         {
             Index = songIndex,
             Title = generator.GenerateTitle(),
             Artist = generator.GenerateArtist(),
             Album = generator.GenerateAlbum(),
-            Genre = generator.GenerateGenre(),
+            Genre = generator.LocalizeGenre(category),
+            GenreCategory = category,
             Review = generator.GenerateReview(),
             Lyrics = generator.GenerateLyrics(),
             Likes = likesCalculator.Calculate(parameters.Seed, songIndex, parameters.Likes)

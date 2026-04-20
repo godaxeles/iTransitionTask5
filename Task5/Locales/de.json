@@ -13,10 +13,8 @@
     "Brücke", "Krone", "Fluch", "Schwinge", "Stein", "Blut", "Echo"
   ],
   "genres": [
-    "Rock", "Pop", "Jazz", "Blues", "Hip-Hop", "Elektronik", "Klassik",
-    "Volksmusik", "Schlager", "Metal", "Alternative", "Punk", "Ambient",
-    "Techno", "House", "Indie", "Soul", "Funk", "Gospel", "Grunge",
-    "Post-Rock", "Neue Welle", "Krautrock", "Symphonic Metal", "Dark Wave"
+    "Rock", "Metal", "Pop", "Jazz", "Blues", "Hip-Hop", "Elektronik",
+    "Klassik", "Country", "Volksmusik", "Reggae", "Punk", "Ambient", "Indie"
   ],
   "bandPrefixes": [
     "Die", "Schwarze", "Rote", "Blaue", "Dunkle", "Elektrische", "Eiserne",

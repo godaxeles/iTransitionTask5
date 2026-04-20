@@ -32,7 +32,7 @@ public class SongPackager(
 
     private async Task WriteSongEntryAsync(ZipArchive archive, SongRecord song, long seed, CancellationToken cancellationToken)
     {
-        var wavBytes = audioGeneratorService.Generate(seed, song.Index);
+        var wavBytes = audioGeneratorService.Generate(seed, song.Index, song.GenreCategory);
         var mp3Bytes = await mp3Encoder.EncodeAsync(wavBytes, cancellationToken);
         var entryName = BuildEntryName(song);
 

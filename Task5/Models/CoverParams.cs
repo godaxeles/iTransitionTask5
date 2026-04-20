@@ -12,4 +12,7 @@ public class CoverParams
     public string Title { get; set; } = string.Empty;
 
     public string Artist { get; set; } = string.Empty;
+
+    [Range(0, 13)]
+    public int Genre { get; set; }
 }

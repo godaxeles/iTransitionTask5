@@ -18,6 +18,16 @@ export function buildCoverUrl(song, seed) {
         index: song.index,
         title: song.title,
         artist: song.artist,
+        genre: song.genreCategory ?? 0,
     });
     return `/api/cover?${params}`;
+}
+
+export function buildAudioUrl(song, seed) {
+    const params = new URLSearchParams({
+        seed,
+        index: song.index,
+        genre: song.genreCategory ?? 0,
+    });
+    return `/api/audio?${params}`;
 }

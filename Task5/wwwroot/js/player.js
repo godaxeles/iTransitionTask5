@@ -1,4 +1,4 @@
-import { formatTime, buildCoverUrl } from './utils.js';
+import { formatTime, buildCoverUrl, buildAudioUrl } from './utils.js';
 
 const ICONS = {
   play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>',
@@ -46,7 +46,7 @@ function play(song, seed) {
   currentSeed = seed;
 
   setPlayerInfo(song, seed);
-  a.src = `/api/audio?seed=${seed}&index=${song.index}`;
+  a.src = buildAudioUrl(song, seed);
   a.load();
   a.play().catch(() => {});
   notify('trackchange', { song, seed });

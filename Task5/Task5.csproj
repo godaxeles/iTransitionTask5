@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <PackageReference Include="Bogus" Version="35.6.5" />
+      <PackageReference Include="MeltySynth" Version="2.4.1" />
       <PackageReference Include="SkiaSharp" Version="2.88.9" />
       <PackageReference Include="SkiaSharp.NativeAssets.Win32" Version="2.88.9" />
       <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="2.88.9" />
@@ -15,6 +16,9 @@
 
     <ItemGroup>
         <Content Update="Locales\**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Content\**">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
     </ItemGroup>

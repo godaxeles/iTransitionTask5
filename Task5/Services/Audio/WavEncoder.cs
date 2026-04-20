@@ -4,24 +4,25 @@ public class WavEncoder
 {
     private const short PcmFormat = 1;
 
-    private const short Channels = 1;
+    private const short Channels = 2;
 
     private const short BitsPerSample = 16;
 
     private const int BytesPerSample = BitsPerSample / 8;
 
-    public byte[] Encode(float[] samples)
+    public byte[] Encode(float[] left, float[] right)
     {
+        var count = Math.Min(left.Length, right.Length);
         using var stream = new MemoryStream();
         using var writer = new BinaryWriter(stream);
-        WriteHeader(writer, samples.Length);
-        WriteSamples(writer, samples);
+        WriteHeader(writer, count);
+        WriteSamples(writer, left, right, count);
         return stream.ToArray();
     }
 
-    private static void WriteHeader(BinaryWriter writer, int sampleCount)
+    private static void WriteHeader(BinaryWriter writer, int frameCount)
     {
-        var dataSize = sampleCount * BytesPerSample;
+        var dataSize = frameCount * Channels * BytesPerSample;
         var byteRate = AudioConfig.SampleRate * Channels * BytesPerSample;
         var blockAlign = (short)(Channels * BytesPerSample);
 
@@ -40,12 +41,18 @@ public class WavEncoder
         writer.Write(dataSize);
     }
 
-    private static void WriteSamples(BinaryWriter writer, float[] samples)
+    private static void WriteSamples(BinaryWriter writer, float[] left, float[] right, int count)
     {
-        foreach (var sample in samples)
+        for (var i = 0; i < count; i++)
         {
-            var clamped = Math.Clamp(sample, -1f, 1f);
-            writer.Write((short)(clamped * short.MaxValue));
+            writer.Write(ToPcm(left[i]));
+            writer.Write(ToPcm(right[i]));
         }
+    }
+
+    private static short ToPcm(float sample)
+    {
+        var clamped = Math.Clamp(sample, -1f, 1f);
+        return (short)(clamped * short.MaxValue);
     }
 }
